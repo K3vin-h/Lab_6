@@ -1,97 +1,49 @@
-/****************** YOUR NAME: 
-
-The instructions describe the missing logic that is needed; you will translate these into JavaScript in the places indicated.
-
-You are encouraged to use the provided naming convention for ease of review.
-
-*/
-
-/****************** create variables ******************/
-/* create variables to hold the values for modelName and duration */
-
-// INSERT YOUR CODE HERE
-let modelName = document.getElementById("model-text")
-const duration = document.getElementById("duration-text")
-
-
-
-
-/****************** helper function ******************/
-/* create a function called recalculate() which will
-    - create a variable to represent the calculated-cost span element. That will look something like:
-        // let costLabel = document.getElementById("calculated-cost");
-    - check the value of the modelName variable, and use that to calculate the new total cost:
-        e.g. if modelName is currently "XYZ", duration * 100 gives us the new total cost.
-        if modelName is currently "CPRG", duration * 213 gives us the new total cost.
-    - set the value of the calculated-cost element's innerHTML to this new value
-*/
-
-// INSERT YOUR CODE HERE
-
-recalculate = (duration) => {
-    const costLabel = document.getElementById("calculated-cost");
-    let totalCost = 0
-    if (modelName === "XYZ") {
-        totalCost = duration * 100
-    } else {
-        totalCost = duration * 213
-    }
-    costLabel.innerHTML = totalCost.toFixed(2)
-}
-
-
-
-
-/****************** model button logic ******************/
-
-/* 
-- first, create a variable to represent the "Switch Model" pseudo-button (hint: can use getElementById)
-- second, create a function called changeModel() which checks the value of the model name variable. This function will:
-    - create a variable to represent the model-text span element
-    - if modelName is currently "XYZ", change the value of modelName to "CPRG", and change the innerHTML of the model-text span element to "Model CPRG"
-    - if modelName is currently "CPRG", change the value of modelName to "XYZ", and change the innerHTML of the model-text span element to "Model XYZ"
-    - then, recalculate() the total cost.
-- finally, uncomment the following line of JavaScript to have this function run automatically whenever the pseudo-button is clicked: */
-    // modelButton.addEventListener("click", changeModel);
-
-// INSERT YOUR CODE HERE
-
-let modelButton = document.getElementById("model-button")
-changeModel = () => {
-    let modelText = document.getElementById("model-text")
-    if (modelName === "XYZ") {
-        modelName = "CPRG"
-        modelText.innerHTML = "Model CPRG"
-    } else {
-        modelName = "XYZ"
-        modelText.innerHTML = "Model XYZ"
-    }
-    recalculate(0)
-}
-modelButton.addEventListener("click", changeModel)
-
-
-
-/****************** duration button logic ******************/
-/*  - first, create a variable to represent the "Change Duration" pseudo-button.
-    - then, create a function called changeDuration() that will
-        - create a variable to represent the duration-text span element
-        - prompt() the user for a new duration
-        - save the result of the prompt() to the duration variable
-        - change the innerHTML of the duration-text span element to this new value
-        - recalculate() the total cost/
-    - finally, attach this function to the "Change Duration" pseudo-button, so it runs whenever the button is clicked.
-*/
-
-// INSERT YOUR CODE HERE
-
-
-let changedurationButton = document.getElementById("duration-button")
-
-changeDuration = () => {
-    let durationText = document.getElementById("duration-text")
-    let duration = prompt("Enter new duration")
-    durationText.innerHTML = duration
-    recalculate(duration)
-}
-changedurationButton.addEventListener("click", changeDuration)
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Raj's Robot Rentals</title>
+        <!-- style sheets -->
+        <link rel="stylesheet" href="styles/reset.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <!-- web fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+            rel="stylesheet">
+    </head>
+    <body>
+        <!-- javascript -->
+        <!-- <script src="scripts/scripts.js"></script> -->
+        <header class = "flex">
+            <img src="images/robot.jpg" alt="photo of a white plastic robot with
+                a black background">
+            <h1>Raj's Robot Rentals</h1>
+        </header>
+        <main>
+            <h2>Quote Generator</h2>
+            <p>We have 2 models available for booking:</p>
+            <ul>
+                <li>Model XYZ: $100 per day</li>
+                <li>Model CPRG: $213 per day</li>
+            </ul>
+            <p>The cost to book <span id = "model-text">Model XYZ</span> for <span id = "duration-text">0</span> days is $<span id = "calculated-cost">0.00</span>.</p>
+            <div class = "flex">
+                <p id = "model-button">Switch Model</p>
+                <p id = "duration-button">Change Duration</p>
+            </div>
+            <p>Thank you for your interest in booking a 'bot!</p>
+        </main>
+        <footer>
+            <p>Photo by <a
+                    href="https://unsplash.com/@possessedphotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Possessed
+                    Photography</a> on <a
+                    href="https://unsplash.com/s/photos/robot-face?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+            </p>
+        </footer>
+        <script src="scripts/scripts.js"></script>
+    </body>
+</html>
