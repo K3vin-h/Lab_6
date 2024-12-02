@@ -10,11 +10,8 @@ You are encouraged to use the provided naming convention for ease of review.
 /* create variables to hold the values for modelName and duration */
 
 // INSERT YOUR CODE HERE
-let modelName = document.getElementById("model-text")
-let duration = document.getElementById("duration-text")
-
-
-
+let modelName = "XYZ";
+let durationText = document.getElementById("duration-text");
 
 /****************** helper function ******************/
 /* create a function called recalculate() which will
@@ -29,18 +26,15 @@ let duration = document.getElementById("duration-text")
 // INSERT YOUR CODE HERE
 
 recalculate = (duration) => {
-    const costLabel = document.getElementById("calculated-cost");
-    let totalCost = 0
-    if (modelName === "XYZ") {
-        totalCost = duration * 100
-    } else {
-        totalCost = duration * 213
-    }
-    costLabel.innerHTML = totalCost.toFixed(2)
-}
-
-
-
+  const costLabel = document.getElementById("calculated-cost");
+  let totalCost = 0;
+  if (modelName === "XYZ") {
+    totalCost = duration * 100;
+  } else {
+    totalCost = duration * 213;
+  }
+  costLabel.innerHTML = totalCost.toFixed(2);
+};
 
 /****************** model button logic ******************/
 
@@ -52,27 +46,40 @@ recalculate = (duration) => {
     - if modelName is currently "CPRG", change the value of modelName to "XYZ", and change the innerHTML of the model-text span element to "Model XYZ"
     - then, recalculate() the total cost.
 - finally, uncomment the following line of JavaScript to have this function run automatically whenever the pseudo-button is clicked: */
-    // modelButton.addEventListener("click", changeModel);
+// modelButton.addEventListener("click", changeModel);
 
 // INSERT YOUR CODE HERE
 
-let modelButton = document.getElementById("model-button")
-changeModel = () => {
-    let modelText = document.getElementById("model-text")
-    if (modelName === "XYZ") {
-        modelName = "CPRG"
-        modelText.innerHTML = "Model CPRG"
-        duration.innerHTML = 0
-    } else {
-        modelName = "XYZ"
-        modelText.innerHTML = "Model XYZ"
-        duration.innerHTML = 0
-    }
-    recalculate(0)
-}
-modelButton.addEventListener("click", changeModel)
+let modelButton = document.getElementById("model-button");
+// changeModel = () => {
+//   let modelText = document.getElementById("model-text");
+//   // modelText.innerHTML == "Model XYZ" ? "CPRG" : "XYZ"
+//   if (modelName === "XYZ") {
+//     modelName = "CPRG";
+//     modelText.innerHTML = "Model CPRG";
+//     duration.innerHTML = 0;
+//   } else {
+//     modelName = "XYZ";
+//     modelText.innerHTML = "Model XYZ";
+//     duration.innerHTML = 0;
+//   }
+//   recalculate(0);
+// };
+// modelButton.addEventListener("click", changeModel);
 
-
+modelButton.addEventListener("click", () => {
+  let modelText = document.getElementById("model-text");
+  // modelText.innerHTML == "Model XYZ" ? "CPRG" : "XYZ"
+  if (modelText.innerHTML === "Model XYZ") {
+    modelName = "CPRG";
+    modelText.innerHTML = "Model CPRG";
+  } else {
+    modelName = "XYZ";
+    modelText.innerHTML = "Model XYZ";
+  }
+  durationText.innerHTML = 0;
+  recalculate(0);
+});
 
 /****************** duration button logic ******************/
 /*  - first, create a variable to represent the "Change Duration" pseudo-button.
@@ -87,13 +94,20 @@ modelButton.addEventListener("click", changeModel)
 
 // INSERT YOUR CODE HERE
 
-
-let changedurationButton = document.getElementById("duration-button")
+let changedurationButton = document.getElementById("duration-button");
 
 changeDuration = () => {
-    let durationText = document.getElementById("duration-text")
-    let duration = prompt("Enter new duration")
-    durationText.innerHTML = duration
-    recalculate(duration)
+  //let durationText = document.getElementById("duration-text");
+  let duration;
+  // if (isNaN(duration)) {
+  //   alert("Please enter a valid integer number");
+  //   return
+  // }
+  while (isNaN(duration = parseInt(prompt("Enter the number of days:")))) {
+    alert("Please enter a valid integer number");
 }
-changedurationButton.addEventListener("click", changeDuration)
+
+  durationText.innerHTML = duration;
+  recalculate(duration);
+};
+changedurationButton.addEventListener("click", changeDuration);
